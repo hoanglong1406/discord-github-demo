@@ -13,14 +13,14 @@ jobs:
       - run: node test.js
 
       - name: Notify Discord
-        if: always()   # luôn chạy dù test pass hay fail
+        if: always()                      
         env:
-          CICD_WEBHOOK: ${{ secrets.CICD_WEBHOOK }}
+          CICD_WEBHOOK: ${{ secrets.CICD_WEBHOOK }}   
         uses: Ilshidur/action-discord@master
         with:
           args: |
-            🔨 Build **{{ job.status }}**
-            Repo: {{ github.repository }}
-            Branch: {{ github.ref_name }}
-            Commit: {{ github.sha }}
-            Actor: {{ github.actor }}
+            🔨 Build **${{ job.status }}**
+            Repo: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+            Actor: ${{ github.actor }}
