@@ -11,3 +11,17 @@ jobs:
         with:
           node-version: 20
       - run: node test.js
+
+      # Bước mới: gửi thông báo đến Discord
+      - name: Notify Discord
+        if: always()  # luôn chạy dù bước test thành công hay thất bại
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: |
+            🔨 Build **{{ job.status }}**
+            Repo: {{ github.repository }}
+            Branch: {{ github.ref_name }}
+            Commit: {{ github.sha }}
+            Actor: {{ github.actor }}
