@@ -15,7 +15,7 @@ jobs:
       - name: Notify Discord
         if: always()                      
         env:
-          CICD_WEBHOOK: ${{ secrets.CICD_WEBHOOK }}   
+          DISCORD_WEBHOOK: ${{ secrets.CICD_WEBHOOK }}   
         uses: Ilshidur/action-discord@master
         with:
           args: |
